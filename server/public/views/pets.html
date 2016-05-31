@@ -3,7 +3,7 @@
 
         <p class="instructions">Select a type of pet, then click the button to play the pet lottery</p>
         <div class="col-md-2 col-md-offset-5">
-            <select class="form-control" required ng-model="selectedPet" ng-options="x for x in pets">
+            <select class="form-control" required ng-model="selectedPet" ng-options="pet.label for pet in pets">
             <option value="">Select a Pet</option>
             </select>
             <br />
@@ -13,7 +13,7 @@
 
 
             <h3>{{animal.name.$t}}</h3>
-            <img ng-src="{{animal.media.photos.photo[3].$t}}"></img>
+            <img ng-if="animal.media.photos.photo[3].$t" ng-src="{{animal.media.photos.photo[3].$t}}"></img>
             <p class="description">{{animal.description.$t ? animal.description.$t : "No description provided"}}</p>
             <br />
             <button class="favorite btn btn-primary" ng-click="favoritePet()" alt="Add to Favorites">Favorite</button>

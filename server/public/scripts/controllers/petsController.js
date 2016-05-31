@@ -4,15 +4,24 @@ myApp.controller('PetsController', ['$scope', '$http', function($scope, $http)
         var key = 'e305dff079f1bc66497b46f75d9a980f';
         var baseURL = 'http://api.petfinder.com/';
 
-        $scope.pets = ["barnyard", "bird", "cat", "dog", "horse", "pig", "reptile", "smallfurry"];
         $scope.favorites = [];
         $scope.currentPet = {};
+        $scope.pets = [
+          {type: "barnyard", label: "Barnyard Animals"},
+          {type: "bird", label: "Birds"},
+          {type: "cat", label: "Cats"},
+          {type: "dog", label: "Dogs"},
+          {type: "horse", label: "Horses"},
+          {type: "pig", label: "Pigs"},
+          {type: "reptile", label: "Reptiles"},
+          {type: "smallfurry", label: "Small & Furry"}
+        ];
 
         $scope.getRandomPet = function() {
 
             var query = 'pet.getRandom';
             query += '?key=' + key;
-            query += '&animal=' + $scope.selectedPet;
+            query += '&animal=' + $scope.selectedPet.type;
             query += '&output=basic';
             query += '&format=json';
 
