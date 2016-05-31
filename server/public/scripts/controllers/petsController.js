@@ -7,7 +7,6 @@ myApp.controller('PetsController', ['$scope', '$http', function($scope, $http)
         $scope.pets = ["barnyard", "bird", "cat", "dog", "horse", "pig", "reptile", "smallfurry"];
         $scope.favorites = [];
         $scope.currentPet = {};
-        $scope.counter = 0;
 
         $scope.getRandomPet = function() {
 
@@ -28,7 +27,7 @@ myApp.controller('PetsController', ['$scope', '$http', function($scope, $http)
                         petID: $scope.animal.id.$t,
                         petName: $scope.animal.name.$t,
                         imageURL: $scope.animal.media.photos.photo[3].$t,
-                        description: $scope.animal.description.$t.substr(0, 100)
+                        description: $scope.animal.description.$t ? $scope.animal.description.$t.substr(0, 100) : "No description provided"
                     };
                     return $scope.currentPet;
                 }
@@ -40,9 +39,10 @@ myApp.controller('PetsController', ['$scope', '$http', function($scope, $http)
             $http.post('/pets', data)
                 .then(function() {
                     console.log('POST /pets');
+                    $scope.counter++;
                 });
 
-            $scope.counter++;
+
         };
     }
 ]);

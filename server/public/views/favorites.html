@@ -1,8 +1,9 @@
 <h2 class="text-center">Favorites</h2>
 <div class="col-md-8 col-md-offset-2 favorites container-fluid" ng-controller="FavoritesController" ng-repeat="pet in favorites">
     <div class="text-center">
-        <h2>{{pet.petName}}</h2>
-        <p>{{pet.description}} ...</p>
+        <h3>{{pet.petName}}</h3>
+        <p>Pet ID: {{pet.petID}}</p>
+        <p class="favoriteinfo">{{pet.description}} ...</p>
         <img ng-src="{{pet.imageURL}}"></img>
     </div>
 </div>
