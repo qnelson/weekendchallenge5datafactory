@@ -1,0 +1,22 @@
+<div class="container-fluid" ng-controller="PetsController">
+    <div class="text-center">
+
+        <p class="instructions">Select a type of pet, then click the button to play the pet lottery</p>
+        <div class="col-md-2 col-md-offset-5">
+            <select class="form-control" required ng-model="selectedPet" ng-options="x for x in pets">
+            <option value="">Select a Pet</option>
+            </select>
+            <br />
+            <button class="submit btn btn-primary" ng-click="getRandomPet()">Pet Lottery</button>
+        </div>
+        <div class="box col-md-8 col-md-offset-2">
+
+
+            <h2>{{animal.name.$t}}</h2>
+            <p>{{animal.description.$t}}</p>
+            <img ng-src="{{animal.media.photos.photo[3].$t}}"></img>
+            <br />
+            <button class="favorite btn btn-primary" ng-click="favoritePet()" alt="Add to Favorites">Favorite</button>
+        </div>
+    </div>
+</div>
