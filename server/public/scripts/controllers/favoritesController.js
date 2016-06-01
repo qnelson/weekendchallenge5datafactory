@@ -1,26 +1,18 @@
-myApp.controller('FavoritesController', ['$scope', '$http', function($scope, $http)
+myApp.controller('FavoritesController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
+  console.log('favorite controller running');
+  $scope.dataFactory = DataFactory;
 
-    {
-        $scope.favorites = [];
-        $scope.counter = 0;
+  $scope.favorites = [];
+  $scope.count = 0;
 
-        getFavorites();
+  if($scope.dataFactory.factoryGetFavorites() === undefined) {
+    $scope.dataFactory.factoryRefreshFavoriteData().then(function() {
+      $scope.favorites = $scope.dataFactory.factoryGetFavorites();
+      $scope.count = $scope.favorites.length;
+    });
+  } else {
+    $scope.favorites = $scope.dataFactory.factoryGetFavorites();
+    $scope.count = $scope.favorites.length;
+  }
 
-        function getFavorites() {
-            $http.get('/pets')
-                .then(function(response) {
-                    response.data.forEach(function(pet) {
-
-                    });
-
-                    $scope.favorites = response.data;
-                    console.log('GET /pets ', response.data);
-                    $scope.counter = $scope.favorites.length
-                    console.log($scope.counter);
-                });
-
-        }
-
-    }
-
-]);
+}]);
